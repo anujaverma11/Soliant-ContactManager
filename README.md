@@ -7,3 +7,4 @@
 - that imported CSV will always have a header "first_name,last_name,email,phone".
 - that imported CSV will be converted into persistent data.
 - that during CSV imports data entry duplicates are accounted for.
+
