@@ -1,52 +1,43 @@
-<h1>Contact Manager</h1>
-<div>
-  <h3>Import a CSV File</h3>
-  <%= form_tag import_contacts_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import CSV" %>
-  <% end %>
-  <%= flash[:notice] %>
+
+
+<div style="width: 100%;">
+  <h1 align="center">Contact Manager</h1>
+   <div style="float:left; width: 40%;">
+
+    <h3>Import a CSV File</h3>
+      <%= form_tag import_contacts_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import CSV" %>
+      <% end %>
+      <%= flash[:notice] %>
+
+    <h3>List all contacts</h3>
+      <%= form_tag(contacts_path, :method => "get") do %>
+        <%= submit_tag("All") %>
+      <% end %>
+
+    <h3>Search contacts</h3>
+      <%= form_tag(contacts_path, :method => "get") do %>
+        <%= label_tag(:last_name, "Last Name or First Character of Last Name or Email:") %>
+        <%= text_field_tag(:last_name) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+  </div>
+
+
+  <div style="float:right; width:60%">
+    <table class="pure-table pure-table-horizontal">
+    <% @contacts.each do |row| %>
+      <tr>
+        <td>Last: <%= row.last_name %></td>
+        <td>First: <%= row.first_name %></td>
+        <td>Phone: <%= row.phone %></td>
+        <td>E-Mail: <%= row.email %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
 </div>
+<!-- <div style="clear:both"></div> -->
 
-<div>
-
-<h3>Find all contacts</h3>
-  <%= form_tag(contacts_path, :method => "get") do %>
-    <%= submit_tag("All") %>
-  <% end %>
-
-<h3>Find contacts</h3>
-  <%= form_tag(contacts_path, :method => "get") do %>
-    <%= label_tag(:last_name, "Last Name or First Character of Last Name or Email:") %>
-    <%= text_field_tag(:last_name) %>
-    <%= submit_tag("Search") %>
-  <% end %>
-<div>
-<table>
-  <tr>
-    <th>Last:</th>
-    <th>First:</th>
-    <th>Phone:</th>
-    <th>E-Mail:</th>
-  </tr>
-  <% @contacts.each do |row| %>
-    <tr>
-      <td><%= row.last_name %></td>
-      <td><%= row.first_name %></td>
-      <td><%= row.phone %></td>
-      <td><%= row.email %></td>
-    </tr>
-  <% end %>
-</table>
-</div>
-
-
-
-
-
-
-
-
-
-</div>
 
