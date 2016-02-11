@@ -8,3 +8,45 @@
   <%= flash[:notice] %>
 </div>
 
+<div>
+
+<h3>Find all contacts</h3>
+  <%= form_tag(contacts_path, :method => "get") do %>
+    <%= submit_tag("All") %>
+  <% end %>
+
+<h3>Find contacts</h3>
+  <%= form_tag(contacts_path, :method => "get") do %>
+    <%= label_tag(:last_name, "Last Name or First Character of Last Name or Email:") %>
+    <%= text_field_tag(:last_name) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+<div>
+<table>
+  <tr>
+    <th>Last:</th>
+    <th>First:</th>
+    <th>Phone:</th>
+    <th>E-Mail:</th>
+  </tr>
+  <% @contacts.each do |row| %>
+    <tr>
+      <td><%= row.last_name %></td>
+      <td><%= row.first_name %></td>
+      <td><%= row.phone %></td>
+      <td><%= row.email %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
